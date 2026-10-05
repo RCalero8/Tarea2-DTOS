@@ -1,44 +1,24 @@
 package com.salesianos.dam.ejercicio_dto;
 
-import com.salesianos.dam.ejercicio_dto.dto.AlumnoDTO;
-import com.salesianos.dam.ejercicio_dto.dto.AlumnoDTOConverter;
-import com.salesianos.dam.ejercicio_dto.entidades.Alumno;
-import com.salesianos.dam.ejercicio_dto.entidades.Curso;
-import com.salesianos.dam.ejercicio_dto.entidades.Direccion;
+import com.salesianos.dam.ejercicio_dto.dto.ProductoDTO;
+import com.salesianos.dam.ejercicio_dto.dto.ProductoDTOConvert;
+import com.salesianos.dam.ejercicio_dto.entidades.Categoria;
+import com.salesianos.dam.ejercicio_dto.entidades.Producto;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class Main {
     @PostConstruct
     public void main(){
-        Curso curso = new Curso();
-        curso.setId(1L);
-        curso.setNombre("2º DAM");
-        curso.setTipo("Ciclo Superior");
-        curso.setTutor("Ana Pérez");
-        curso.setAula("Aula 12");
+        Categoria cat = new Categoria(1L, "Informática");
+        Producto producto = new Producto(1L, "Portátil", "Portátil de 15 pulgadas",
+                799.99, List.of("portatil1.jpg", "portatil2.jpg"), cat);
 
-        Direccion dir = new Direccion();
-        dir.setId(1L);
-        dir.setTipoVia("Calle");
-        dir.setLinea1("Real 25");
-        dir.setLinea2("3ºB");
-        dir.setCp("41001");
-        dir.setPoblacion("Sevilla");
-        dir.setProvincia("Sevilla");
+        ProductoDTO productoDTO = new ProductoDTOConvert().to(producto);
+        System.out.println(productoDTO);
 
-        Alumno alumno = new Alumno();
-        alumno.setId(1L);
-        alumno.setNombre("Lucía");
-        alumno.setApellido1("García");
-        alumno.setApellido2("López");
-        alumno.setTelefono("600123456");
-        alumno.setEmail("lucia@mail.com");
-        alumno.setDireccion(dir);
-        alumno.setCurso(curso);
-
-        AlumnoDTO dto = AlumnoDTOConverter.to(alumno);
-
-        System.out.println(dto);    }
+    }
 }
