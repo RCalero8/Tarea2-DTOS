@@ -1,7 +1,6 @@
 package com.salesianos.dam.ejercicio_dto;
 
 import com.salesianos.dam.ejercicio_dto.dto.AlumnoDTO;
-import com.salesianos.dam.ejercicio_dto.dto.AlumnoDTOConverter;
 import com.salesianos.dam.ejercicio_dto.entidades.Alumno;
 import com.salesianos.dam.ejercicio_dto.entidades.Curso;
 import com.salesianos.dam.ejercicio_dto.entidades.Direccion;
@@ -38,7 +37,7 @@ public class Main {
         alumno.setDireccion(dir);
         alumno.setCurso(curso);
 
-        AlumnoDTO dto = AlumnoDTOConverter.to(alumno);
+        AlumnoDTO dto = AlumnoDTO.to(alumno);
 
         System.out.println(dto);    }
 }
